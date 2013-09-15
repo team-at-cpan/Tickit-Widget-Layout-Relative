@@ -90,12 +90,12 @@ sub render {
 		}
 	}
 
-	warn "Have items in this order:";
-	warn $_->{id} for @order;
+#	warn "Have items in this order:";
+#	warn $_->{id} for @order;
 	my $rw = $self->{width};
 	my $rh = $self->{height};
 	foreach my $item (@order) {
-		warn "Processing " . $item->{id};
+#		warn "Processing " . $item->{id};
 		$item->{border} ||= '1px round single';
 
 		# Assign top-left corner based on what location information we have already
@@ -128,7 +128,7 @@ sub render {
 		if($item->{border} eq 'none' && @{$item->{below}}) {
 			++$y
 		}
-		warn "At ($x, $y) size ($w, $h)";
+#		warn "At ($x, $y) size ($w, $h)";
 		$item->{x} = $x;
 		$item->{y} = $y;
 		$item->{w} = $w;
@@ -195,26 +195,6 @@ sub find_deps {
 1;
 
 __END__
-
-=pod
-
-Outer width:
-* Calculate from width
-* Reduce by left+right margins
-* Distribute by left_of / right_of
-
-Inner width:
-* reduce by 2 if border
-* reduce by padding left+right
-
-Outer height:
-* Calculate from height
-* Reduce by top+bottom margins
-* Distribute by above/below 
-
-Inner height:
-* reduce by 2 if border
-* reduce by padding top+bottom
 
 =head1 AUTHOR
 

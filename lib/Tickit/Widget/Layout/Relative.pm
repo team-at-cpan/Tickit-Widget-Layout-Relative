@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use parent qw(Tickit::ContainerWidget);
 
+our $VERSION = '0.001';
+
 =head1 NAME
 
 Tickit::Widget::Layout::Relative - apply sizing to a group

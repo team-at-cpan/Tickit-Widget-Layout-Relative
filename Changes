@@ -1,6 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	No new features.
+
+	Examples:
+	* Provided a Tickit::DSL-based version of the base.pl example
 
 0.002     2013-09-15 03:55:49 Europe/London
 	No new features.

@@ -8,8 +8,7 @@ our $VERSION = '0.002';
 
 =head1 NAME
 
-Tickit::Widget::Layout::Relative - apply sizing to a group
-of L<Tickit> widgets
+Tickit::Widget::Layout::Relative - apply sizing to a group of L<Tickit> widgets
 
 =head1 SYNOPSIS
 

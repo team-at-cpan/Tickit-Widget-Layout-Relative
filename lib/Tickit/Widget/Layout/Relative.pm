@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use parent qw(Tickit::ContainerWidget);
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 =head1 NAME
 
@@ -45,6 +45,12 @@ of L<Tickit> widgets
 A container widget which provides 'relative' layout for widgets:
 specify the relations between the widget locations and this will
 attempt to fit them to the available space.
+
+=begin HTML
+
+<p><img src="http://tickit.perlsite.co.uk/cpan-screenshot/tickit-widget-layout-relative1.png" alt="Relative layout" width="642" height="420"></p>
+
+=end HTML
 
 =cut
 
@@ -322,7 +328,7 @@ sub window_gained {
 	});
 	$self->SUPER::window_gained($win, @_);
 	$win->{on_focus} = sub {
-		warn "given focus\n";
+#		warn "given focus\n";
 		$self->redraw;
 	};
 }
@@ -341,7 +347,7 @@ sub reshape {
 	$self->layout->{height} = $win->lines - 1;
 	$self->layout->render;
 	foreach my $item (@{$self->{layout}{ready}}) {
-		warn "Checking " . $item->{id} . " from ready list\n";
+#		warn "Checking " . $item->{id} . " from ready list\n";
 		next unless my $widget = $item->{widget};
 
 		my $border_size = ($item->{border} eq 'none') ? 0 : 1;
@@ -351,7 +357,7 @@ sub reshape {
 			lines => $item->{h} - $border_size,
 			cols  => $item->{w} - $border_size
 		);
-		warn "Item " . $item->{id} . " has $rect\n";
+#		warn "Item " . $item->{id} . " has $rect\n";
 
 		# Reshape if we have one already
 		if($widget->window) {
@@ -397,4 +403,14 @@ sub _focus_gained {
 }
 
 1;
+
+__END__
+
+=head1 AUTHOR
+
+Tom Molesworth <cpan@entitymodel.com>
+
+=head1 LICENSE
+
+Copyright Tom Molesworth 2012-2013. Licensed under the same terms as Perl itself.
 

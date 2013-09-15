@@ -1,5 +1,4 @@
 package Tickit::Layout::Relative;
-# ABSTRACT: apply relative sizing for widget positioning
 use strict;
 use warnings;
 
@@ -37,9 +36,11 @@ of L<Tickit> widgets
   margin_top   => '1em',
   margin_right => '3em',
  );
- Tickit->new(root => Tickit::Widget::Layout::Relative->new(layout => $l))->run;
 
 =head1 DESCRIPTION
+
+Provides the underlying implementation for widget layout used
+by L<Tickit::Widget::Layout::Relative>.
 
 =cut
 

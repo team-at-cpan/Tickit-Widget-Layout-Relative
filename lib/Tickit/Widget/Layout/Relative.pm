@@ -1,4 +1,5 @@
 package Tickit::Widget::Layout::Relative;
+# ABSTRACT: align widgets relative to one another
 use strict;
 use warnings;
 use parent qw(Tickit::ContainerWidget);
@@ -12,7 +13,38 @@ of L<Tickit> widgets
 
 =head1 SYNOPSIS
 
+ my $l = Tickit::Widget::Layout::Relative->new;
+ $l->add(
+  title  => 'Little panel',
+  id     => 'second',
+  border => 'round dashed single',
+  width  => '33%',
+  height => '5em',
+ );
+ $l->add(
+  title     => 'Another panel',
+  id        => 'first',
+  below     => 'second',
+  top_align => 'second',
+  border    => 'round dashed single',
+  width     => '33%',
+  height    => '10em',
+ );
+ $l->add(
+  title        => 'Something on the right',
+  id           => 'overview',
+  right_of     => 'first',
+  bottom_align => 'first',
+  margin_top   => '1em',
+  margin_right => '3em',
+ );
+ Tickit->new(root => $l)->run;
+
 =head1 DESCRIPTION
+
+A container widget which provides 'relative' layout for widgets:
+specify the relations between the widget locations and this will
+attempt to fit them to the available space.
 
 =cut
 
@@ -342,12 +374,6 @@ sub reshape {
 	$self->SUPER::reshape(@_);
 }
 
-#sub focus_next {
-#	my $self = shift;
-#	$self->SUPER::focus_next(@_);
-#	$self->redraw;
-#}
-#
 sub children {
 	my $self = shift;
 	my @children = grep defined, map $_->{widget}, @{$self->layout->{ready}};

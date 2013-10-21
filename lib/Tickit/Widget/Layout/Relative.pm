@@ -325,7 +325,6 @@ sub window_gained {
 	bless $win, 'Tickit::Widget::Layout::Relative::Window'; # aforementioned haxx
 	$win->set_focus_callback(sub {
 		weaken($self->{child_focus} = shift);
-		return unless $self->window->is_visible;
 		if($self->{frame_rectset}) {
 			$self->window->expose($_) for $self->{frame_rectset}->rects;
 		} else {
@@ -413,7 +412,18 @@ sub _focus_gained {
 sub expose {
 	my $self = shift;
 	my @children = @{ $self->{child_windows} || [] };
-	if($self->is_visible) {
+	my $visible = 1;
+	{
+		my $w = $self;
+		while($w != $w->root) {
+			unless($w->is_visible) {
+				$visible = 0;
+				last;
+			}
+			$w = $w->parent;
+		}
+	}
+	if($visible) {
 		$_->show for grep !$_->is_visible, @children;
 	} else {
 		$_->hide for grep $_->is_visible, @children;

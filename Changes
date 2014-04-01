@@ -1,6 +1,15 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	No new features.
+
+	Bugs fixed:
+	* Some visibility issues resolved when calculating layout
+
+	Documentation:
+	* Fixed synopsis example
+	* Added example to ->add to clarify the passing of the widget
+	as first parameter
 
 0.003     2013-09-15 16:41:32 Europe/London
 	No new features.

@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use parent qw(Tickit::ContainerWidget);
 
-our $VERSION = '0.003';
+our $VERSION = '0.004';
 
 =head1 NAME
 
@@ -196,6 +196,17 @@ right (as top_align)
 =back
 
 Don't rely on the return value. It may change in future.
+
+Example:
+
+ $layout->add(
+  Tickit::Widget::Static->new(text => '...'),
+  title  => 'Some panel',
+  id     => 'send',
+  border => 'single',
+  width  => '85%',
+  height => '15em',
+ )
 
 =cut
 
@@ -441,5 +452,5 @@ Tom Molesworth <cpan@entitymodel.com>
 
 =head1 LICENSE
 
-Copyright Tom Molesworth 2012-2013. Licensed under the same terms as Perl itself.
+Copyright Tom Molesworth 2012-2014. Licensed under the same terms as Perl itself.
 

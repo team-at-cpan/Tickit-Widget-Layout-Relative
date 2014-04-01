@@ -2,45 +2,18 @@ package Tickit::Layout::Relative;
 use strict;
 use warnings;
 
-our $VERSION = '0.001';
-
 =head1 NAME
 
-Tickit::Layout::Relative - apply sizing to a group
-of L<Tickit> widgets
+Tickit::Layout::Relative - apply sizing to a group of L<Tickit> widgets
 
 =head1 SYNOPSIS
 
- my $l = Tickit::Layout::Relative->new(width => 80, height => 45);
- $l->add(
-  title  => 'Little panel',
-  id     => 'send',
-  border => 'round dashed single',
-  width  => '33%',
-  height => '5em',
- );
- $l->add(
-  title     => 'Another panel',
-  id        => 'listen',
-  below     => 'send',
-  top_align => 'send',
-  border    => 'round dashed single',
-  width     => '33%',
-  height    => '10em',
- );
- $l->add(
-  title        => 'Something on the right',
-  id           => 'overview',
-  right_of     => 'listen',
-  bottom_align => 'listen',
-  margin_top   => '1em',
-  margin_right => '3em',
- );
+# EXAMPLE examples/synopsis.pl
 
 =head1 DESCRIPTION
 
 Provides the underlying implementation for widget layout used
-by L<Tickit::Widget::Layout::Relative>.
+internally by L<Tickit::Widget::Layout::Relative>.
 
 =cut
 
@@ -203,5 +176,5 @@ Tom Molesworth <cpan@entitymodel.com>
 
 =head1 LICENSE
 
-Copyright Tom Molesworth 2012-2013. Licensed under the same terms as Perl itself.
+Copyright Tom Molesworth 2012-2014. Licensed under the same terms as Perl itself.
 

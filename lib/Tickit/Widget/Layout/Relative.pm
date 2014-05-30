@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use parent qw(Tickit::ContainerWidget);
 
-our $VERSION = '0.004';
+our $VERSION = '0.005';
 
 =head1 NAME
 
@@ -74,14 +74,6 @@ BEGIN {
 		focus_frame_fg        => 'green',
 		focus_frame_linestyle => 'thick';
 }
-
-# There are a few unfortunate hoops to jump through to get
-# rounded-corner rendering at the moment, but it tends to
-# look neater:
-use constant NORTH_SINGLE => Tickit::RenderBuffer->NORTH_SINGLE;
-use constant SOUTH_SINGLE => Tickit::RenderBuffer->SOUTH_SINGLE;
-use constant EAST_SINGLE => Tickit::RenderBuffer->EAST_SINGLE;
-use constant WEST_SINGLE => Tickit::RenderBuffer->WEST_SINGLE;
 
 =head1 METHODS
 
@@ -292,10 +284,10 @@ sub render_to_rb {
 
 {
 my %override = (
-	SOUTH_SINGLE | EAST_SINGLE, 0x256D,
-	NORTH_SINGLE | EAST_SINGLE, 0x2570,
-	SOUTH_SINGLE | WEST_SINGLE, 0x256E,
-	NORTH_SINGLE | WEST_SINGLE, 0x256f,
+	southeast => 0x256D,
+	northeast => 0x2570,
+	southwest => 0x256E,
+	northwest => 0x256f,
 );
 
 =head2 render_corners
@@ -314,11 +306,11 @@ sub render_corners {
 	CORNER:
 	foreach my $corner (@corners) {
 		my ($y, $x) = @$corner;
-		my $cell = eval { $rb->_xs_getcell($y, $x) };
-		next CORNER unless $cell && $cell->state == Tickit::RenderBuffer::LINE;
-		my $mask = $cell->linemask;
+		my $cell = $rb->get_cell($y, $x);
+		next CORNER unless $cell and my $linemask = $cell->linemask;
+		my $corners = join "", grep { $linemask->$_ == LINE_SINGLE } qw( north south east west );
 		# Keep the same pen
-		$rb->char_at($y, $x, $override{$mask}, $cell->pen) if exists $override{$mask};
+		$rb->char_at($y, $x, $override{$corners}, $cell->pen) if exists $override{$corners};
 	}
 }
 }

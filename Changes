@@ -1,6 +1,11 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	No new features.
+
+	Bugs fixed:
+	* Latest Tickit has a proper API for retrieving cell contents,
+	apply patch to use this instead of our previous hack (thanks to Paul Evans)
 
 0.004     2014-04-01 23:12:26+01:00 Europe/London
 	No new features.
